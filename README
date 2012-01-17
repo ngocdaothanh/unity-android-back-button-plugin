@@ -1,29 +1,32 @@
 This Unity 3D plugin sample shows how to handle BACK button on Android to
 display a dialog asking user if he wants to quit.
 
-1. Save this Eclipse project to right in Assets/Plugins/Android
+1. Save this Eclipse project to Assets/Plugins/Android
 directory of your Unity project.
 
-2. Configure build path for Eclipse:
+Do not save as a subdirectory. AndroidManifest.xml should be right in
+Assets/Plugins/Android
 
-See .classpath file:
+2. Copy classes.jar in Unity to libs directory.
 
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-        <classpathentry kind="src" path="src"/>
-        <classpathentry kind="src" path="gen"/>
-        <classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-        <classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-        <classpathentry kind="lib" path="/Applications/Unity/Unity.app/Contents/PlaybackEngines/AndroidPlayer/bin/classes.jar"/>
-        <classpathentry kind="output" path="bin/classes"/>
-</classpath>
-
+On Mac OS X, typically it is at:
 /Applications/Unity/Unity.app/Contents/PlaybackEngines/AndroidPlayer/bin/classes.jar
-is the path if you are running Unity on Mac OS X. If you are on Windows, change
-the path properly.
 
 3. Use Eclipse to build JAR file:
+
+Add classes.jar copied above to the project build path for Eclipse.
 
 Right click project name -> Export... -> JAR file
 Select everything if you are not sure.
 Normally you only have to select .class files and resource files.
+
+4. Use Ant to build JAR file:
+
+If you want to use Ant instead of Eclipse:
+
+$ android update project --path .
+$ ant release
+
+Files will be created in bin directory.
+
+To sign or obfuscate the created JAR file, see ant.properties.
